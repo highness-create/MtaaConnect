@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1063452776963",
+    "project_id": "mtaaconnect-b2c9e",
+    "storage_bucket": "mtaaconnect-b2c9e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1063452776963:android:5d53b8de579c5c3c428c36",
+        "android_client_info": {
+          "package_name": "com.example.mtaaconnect"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKHcE7lmwLtBwOgVenfIKP5rQeDNTPMqg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
