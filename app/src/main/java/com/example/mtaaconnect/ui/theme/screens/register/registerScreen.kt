@@ -143,7 +143,6 @@ fun registerScreen(navController: NavController) {
                             username = username,
                             email = email,
                             password = password,
-                            confirmpassword = confirmPassword,
                             navController = navController,
                             context = context
                         )

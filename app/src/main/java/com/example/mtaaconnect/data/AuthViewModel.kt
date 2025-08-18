@@ -16,7 +16,6 @@ class AuthViewModel:ViewModel() {
         username: String,
         email: String,
         password: String,
-        confirmpassword :String,
         navController: NavController,
         context: Context
     ) {
