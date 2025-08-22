@@ -3,6 +3,7 @@ package com.example.mtaaconnect.ui.theme.screens.register
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -17,6 +18,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -48,12 +50,31 @@ fun registerScreen(navController: NavController) {
             .fillMaxSize()
             .background(Color.White)
     ) {
-        Image(
-            painter = painterResource(id = R.drawable.background),
-            contentDescription = "Register Background",
-            contentScale = ContentScale.Crop,
-            modifier = Modifier.fillMaxSize()
-        )
+        Box(modifier = Modifier.fillMaxSize()) {
+            // 🌄 Background Image
+            Image(
+                painter = painterResource(id = R.drawable.mtaa), // your logo
+                contentDescription = "App logo",
+                contentScale = ContentScale.Fit,
+                modifier = Modifier
+                    .size(180.dp)
+                    .align(Alignment.Center)
+                    .clip(RoundedCornerShape(24.dp))
+                    .background(Color.White.copy(alpha = 0.9f))
+                    .border(3.dp, Color(0xFFCC5500), RoundedCornerShape(24.dp)) // Burnt orange
+                    .padding(16.dp)
+            )
+            Image(
+                painter = painterResource(id = R.drawable.background),
+                contentDescription = "Register Background",
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.fillMaxSize()
+            )
+
+            // 🟧 Logo Image styled and centered
+
+        }
+
 
         Column(
             modifier = Modifier

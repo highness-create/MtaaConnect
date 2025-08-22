@@ -7,24 +7,30 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.mtaaconnect.ui.theme.screens.SplashScreen
 import com.example.mtaaconnect.ui.theme.screens.client.AddClientScreen
-import com.example.mtaaconnect.ui.theme.screens.client.ClientListScreen
+
 import com.example.mtaaconnect.ui.theme.screens.client.updateClientScreen
+import com.example.mtaaconnect.ui.theme.screens.clients.ClientListScreen
 import com.example.mtaaconnect.ui.theme.screens.dashboards.dashboardScreen
 import com.example.mtaaconnect.ui.theme.screens.login.loginScreen
+import com.example.mtaaconnect.ui.theme.screens.post.PostScreen
 import com.example.mtaaconnect.ui.theme.screens.register.registerScreen
+import com.example.mtaaconnect.ui.theme.screens.services.viewservicesScreen
+import com.example.mtaaconnect.ui.theme.screens.user.userScreen
 
 @Composable
-fun AppNavHost(
-    navController: NavHostController = rememberNavController(),
-    startDestination: String = ROUTE_REGISTER
-) {
-    NavHost(navController = navController, startDestination = startDestination) {
-
+fun AppNavHost(navController: NavHostController = rememberNavController(), startDestination:String= ROUTE_SPLASH){
+    NavHost(navController=navController,startDestination= startDestination){
+        composable(ROUTE_SPLASH) { SplashScreen {navController.navigate(ROUTE_USER){popUpTo(
+            ROUTE_USER){inclusive = true}} } }
         composable(ROUTE_REGISTER) { registerScreen(navController) }
         composable(ROUTE_LOGIN) { loginScreen(navController) }
         composable(ROUTE_DASHBOARD) { dashboardScreen(navController) }
         composable(ROUTE_ADD_CLIENT) { AddClientScreen(navController) }
+        composable(ROUTE_POST) { PostScreen(navController) }
+        composable(ROUTE_SERVICES) { viewservicesScreen(navController) }
+        composable(ROUTE_USER) { userScreen(navController) }
         composable(ROUTE_CLIENT_LIST) {ClientListScreen (navController)}
         composable(ROUTE_UPDATE_CLIENT,
             arguments = listOf(
@@ -33,8 +39,8 @@ fun AppNavHost(
         {
                 backStackEntry ->
             val clientId = backStackEntry.arguments?.getString("clientId")!!
-//            updateClientScreen(navController, clientId) }
+            updateClientScreen(navController, clientId) }
 
 
     }
-}}
+}

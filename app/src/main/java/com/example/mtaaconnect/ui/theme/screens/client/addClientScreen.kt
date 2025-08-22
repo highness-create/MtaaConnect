@@ -50,7 +50,7 @@ fun AddClientScreen(navController: NavController) {
         uri?.let { imageUri.value = it }
     }
 
-    val patientViewModel: ClientViewModel = viewModel()
+    val clientViewModel: ClientViewModel = viewModel()
     val context = LocalContext.current
 
 
@@ -80,7 +80,7 @@ fun AddClientScreen(navController: NavController) {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = "Add New Patient",
+                    text = "Add New Client",
                     fontSize = 26.sp,
                     color = themeOrange
                 )
@@ -101,7 +101,7 @@ fun AddClientScreen(navController: NavController) {
                     ) { targetUri ->
                         AsyncImage(
                             model = targetUri ?: R.drawable.ic_person,
-                            contentDescription = "Patient Image",
+                            contentDescription = "Client Image",
                             contentScale = ContentScale.Crop,
                             modifier = Modifier.fillMaxSize()
                         )
@@ -131,7 +131,7 @@ fun AddClientScreen(navController: NavController) {
                     value = name,
                     onValueChange = { name = it },
                     label = { Text("Full Name") },
-                    placeholder = { Text("e.g., John Doe") },
+                    placeholder = { Text("e.g., Mary Jane") },
                     modifier = fieldModifier,
                     shape = fieldShape
                 )
@@ -210,7 +210,7 @@ fun AddClientScreen(navController: NavController) {
 
                     Button(
                         onClick = {
-                            patientViewModel.uploadClient(
+                            clientViewModel.uploadClient(
                                 imageUri.value,
                                 name,
                                 gender,

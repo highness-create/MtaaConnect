@@ -26,7 +26,7 @@ import java.io.InputStream
 
 class ClientViewModel:ViewModel() {
     val cloudinaryUrl = "https://api.cloudinary.com/v1_1/di2iwtvly/image/upload"
-    val uploadPreset = "HOSPITALIMAGES"
+    val uploadPreset = "MtaaConnecT"
     fun uploadClient(imageUri: Uri?,name:String,gender:String,nationality:String,phonenumber:String, age:String,diagnosis:String,context: Context, navController: NavController){
 
         viewModelScope.launch (Dispatchers.IO){

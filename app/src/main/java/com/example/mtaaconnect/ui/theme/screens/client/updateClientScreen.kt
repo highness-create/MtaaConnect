@@ -46,7 +46,7 @@ fun updateClientScreen(
 
     LaunchedEffect(clientId) {
         try {
-            val ref = FirebaseDatabase.getInstance().getReference("Patients").child(clientId)
+            val ref = FirebaseDatabase.getInstance().getReference("Clients").child(clientId)
             val snapshot = ref.get().await()
             client = snapshot.getValue(Client::class.java)?.apply {
                 id = clientId
@@ -127,7 +127,7 @@ fun updateClientScreen(
                     ) { targetImage ->
                         AsyncImage(
                             model = targetImage,
-                            contentDescription = "Patient Image",
+                            contentDescription = "Client Image",
                             contentScale = ContentScale.Crop,
                             modifier = Modifier.fillMaxSize()
                         )

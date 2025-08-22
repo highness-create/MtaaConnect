@@ -1,4 +1,4 @@
-package com.example.mtaaconnect.ui.theme.screens.client
+package com.example.mtaaconnect.ui.theme.screens.clients
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -21,21 +21,22 @@ import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.example.mtaaconnect.data.ClientViewModel
 import com.example.mtaaconnect.models.Client
+
 @Composable
 fun ClientListScreen(navController: NavController) {
-    val ClientViewModel: ClientViewModel = viewModel()
-    val clients = ClientViewModel.clients
+    val clientViewModel: ClientViewModel = viewModel()
+    val clients = clientViewModel.clients
     val context = LocalContext.current
 
     LaunchedEffect(Unit) {
-        ClientViewModel.fetchClient(context)
+        clientViewModel.fetchClient(context)
     }
 
     LazyColumn {
         items(clients) { client ->
             ClientCard(
                 client = client,
-                onDelete = { clientId -> ClientViewModel.deleteClient(clientId, context) },
+                onDelete = { clientId -> clientViewModel.deleteClient(clientId, context) },
                 navController = navController
             )
         }
@@ -86,7 +87,7 @@ fun ClientCard(
                 if (!client.imageUrl.isNullOrEmpty()) {
                     AsyncImage(
                         model = client.imageUrl,
-                        contentDescription = "Patient Image",
+                        contentDescription = "Client Image",
                         modifier = Modifier
                             .size(64.dp)
                             .clip(CircleShape),
