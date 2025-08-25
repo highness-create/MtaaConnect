@@ -1,8 +1,5 @@
 package com.example.mtaaconnect.ui.theme.screens.dashboards
 
-import android.content.Intent
-import android.net.Uri
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -19,33 +16,37 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.example.mtaaconnect.data.PostViewModel
 import com.example.mtaaconnect.navigation.ROUTE_ADD_CLIENT
 import com.example.mtaaconnect.navigation.ROUTE_CLIENT_LIST
-import com.google.firebase.auth.FirebaseAuth
+import com.example.mtaaconnect.navigation.ROUTE_HOME
+//import com.example.mtaaconnect.navigation.ROUTE_HOME
+import com.example.mtaaconnect.navigation.ROUTE_POST
+import com.example.mtaaconnect.navigation.ROUTE_SERVICES
+//import com.example.mtaaconnect.navigation.ROUTE_PAYMENTS
 
-// Data model reused from the first code
-data class DashboardItem(val title: String, val icon: ImageVector)
+// Updated Data model with route
+data class DashboardItem(val title: String, val icon: ImageVector, val route: String)
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun dashboardScreen(navController: NavController) {
+fun dashboardScreen(navController: NavController, ) {
     val context = LocalContext.current
     var showAlertDialog by remember { mutableStateOf(false) }
 
     val clientCount by remember { mutableStateOf((100..120).random()) }
     val criticalAlerts by remember { mutableStateOf(listOf("Client Mary Jane needs assistance", "Inquiries on last import")) }
 
-    // Search query state
     var searchQuery by remember { mutableStateOf("") }
-
-    // Sample dashboard items
+    val postViewModel:PostViewModel = viewModel()
     val dashboardItems = listOf(
-        DashboardItem("Home", Icons.Default.Home),
-        DashboardItem("Post", Icons.Default.Edit),
-        DashboardItem("View Services", Icons.Default.List),
-        DashboardItem("Make Payments", Icons.Default.ThumbUp)
+        DashboardItem("Home", Icons.Default.Home, route = ROUTE_HOME),
+        DashboardItem("Post", Icons.Default.Edit, route = ROUTE_POST),
+        DashboardItem("View Services", Icons.Default.List, route = ROUTE_SERVICES),
+//        DashboardItem("Make Payments", Icons.Default.ThumbUp, route = ROUTE_PAYMENTS)
     )
 
     val filteredItems = dashboardItems.filter {
@@ -85,13 +86,6 @@ fun dashboardScreen(navController: NavController) {
                 }
             }
 
-            // Chart placeholder card
-            Card(
-                modifier = Modifier.fillMaxWidth(),
-                elevation = CardDefaults.cardElevation(6.dp)
-            ) {
-
-            }
 
             // Quick Actions
             Text("Quick Actions", fontSize = 18.sp, fontWeight = FontWeight.Bold)
@@ -140,10 +134,9 @@ fun dashboardScreen(navController: NavController) {
                         ) {
                             rowItems.forEach { item ->
                                 DashboardCard(title = item.title, icon = item.icon) {
-                                    // TODO: Handle card clicks
+                                    navController.navigate(item.route)
                                 }
                             }
-                            // For odd items in last row
                             if (rowItems.size == 1) Spacer(modifier = Modifier.weight(1f))
                         }
                     }
@@ -199,7 +192,6 @@ fun DashboardCard(title: String, icon: ImageVector, onClick: () -> Unit) {
         }
     }
 }
-
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable

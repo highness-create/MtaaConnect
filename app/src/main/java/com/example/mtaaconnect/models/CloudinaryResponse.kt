@@ -7,8 +7,4 @@ data class CloudinaryResponse(
     val secure_url:String,
     val public_id: String
 )
-data class Post(
-    val title: String,
-    val content: String,
-    val imageUri: Uri?
-)
+
